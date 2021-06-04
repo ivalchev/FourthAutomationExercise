@@ -22,15 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\MainPage.feature.cs">
+    <Compile Update="Features\OpenMainPage.feature.cs">
       <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\MainPage.feature">
+    <SpecFlowFeatureFiles Update="Features\OpenMainPage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>MainPage.feature.cs</LastGenOutput>
+      <LastGenOutput>OpenMainPage.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

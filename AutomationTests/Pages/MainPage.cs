@@ -1,6 +1,8 @@
 ﻿using Framework;
+using Framework.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
+using System.Collections.Generic;
 
 namespace AutomationTests.Pages
 {
@@ -14,14 +16,35 @@ namespace AutomationTests.Pages
         private IWebElement TxtSearchField => Driver.FindElementById("twotabsearchtextbox");
         private IWebElement BtnSearchSubmit => Driver.FindElementById("nav-search-submit-button");
         private IWebElement LnkBasket => Driver.FindElementById("nav-cart");
+        private IEnumerable<IWebElement> DropDownSections => Driver.FindElementsById("searchDropdownBox");
 
         public string PageTitle => Driver.Title;
 
         public string PageUrl => Driver.Url;
 
+        public void ClickSearchButton() => BtnSearchSubmit.Click();
+
         public void OpenMainPage()
         {
-            Driver.Navigate().GoToUrl("https://www.amazon.co.uk/");
+            GoTo("https://www.amazon.co.uk/");
+        }
+
+        public void ChooseSection(string section)
+        {
+            DropDownSections.GetElementFromCollection(section).Click();
+        }
+
+        public void SearchItem(string searchText)
+        {
+            TxtSearchField.Clear();
+            TxtSearchField.SendKeys(searchText);
+
+            ClickSearchButton();
+        }
+
+        public CartPage OpenBasket()
+        {
+            LnkBasket.Click();
         }
     }
 }

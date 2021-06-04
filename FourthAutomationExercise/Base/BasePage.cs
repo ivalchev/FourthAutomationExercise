@@ -1,15 +1,16 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 
 namespace Framework
 {
     public abstract class BasePage
     {
-        protected BasePage(IWebDriver driver)
+        protected BasePage(RemoteWebDriver driver)
         {
             Driver = driver;
         }
 
-        protected IWebDriver Driver { get; private set; }
+        protected RemoteWebDriver Driver { get; private set; }
 
         public void GoTo(string url)
         {

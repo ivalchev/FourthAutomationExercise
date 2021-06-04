@@ -1,8 +1,19 @@
-﻿using System;
+﻿using OpenQA.Selenium;
 
-namespace FourthAutomationExercise
+namespace Framework
 {
-    public class BasePage
+    public abstract class BasePage
     {
+        protected BasePage(IWebDriver driver)
+        {
+            Driver = driver;
+        }
+
+        protected IWebDriver Driver { get; private set; }
+
+        public void GoTo(string url)
+        {
+            Driver.Navigate().GoToUrl(url);
+        }
     }
 }

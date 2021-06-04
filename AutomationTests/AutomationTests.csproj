@@ -16,14 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FourthAutomationExercise\FourthAutomationExercise.csproj" />
+    <ProjectReference Include="..\FourthAutomationExercise\Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Features\" />
     <Folder Include="Hooks\" />
     <Folder Include="Steps\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

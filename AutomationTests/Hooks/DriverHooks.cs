@@ -20,7 +20,7 @@ namespace AutomationTests.Hooks
         {
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
 
         [AfterScenario]

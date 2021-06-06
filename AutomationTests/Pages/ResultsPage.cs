@@ -20,13 +20,17 @@ namespace AutomationTests.Pages
         //Items Elements
         private IEnumerable<IWebElement> LnkItemTitles => Driver.FindElementsByXPath("//span[@class ='a-size-medium a-color-base a-text-normal']");
         private IEnumerable<IWebElement> ResultItems => Driver.FindElementsByXPath("//span[starts-with(@cel_widget_id, 'MAIN-SEARCH_RESULTS')]");
-        //TODO Created test for the prices !!!!
-        private IEnumerable<IWebElement> FirstPagePrices => Driver.FindElementsByXPath($"//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//div[@class = 'a-row a-badge-region']");
+        private IEnumerable<IWebElement> FirstElementPrices => Driver.FindElementsByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//span[@class = 'a-price']//span[@class = 'a-offscreen']");
 
 
         public string SubNavigationMenuValue => LnkSubNavigationMenu.Text;
 
         public string DepartmentValue => TxtDepartment.Text;
+
+        public string GetPriceValue(int itemNumber)
+        {
+            return FirstElementPrices.GetElementFromCollection(itemNumber).Text;
+        }
 
         public string ItemTitleValue(int itemNumber)
         {
@@ -52,7 +56,7 @@ namespace AutomationTests.Pages
             }
         }
 
-        public ItemPage NavigateToItem(int itemNumber)
+        public ItemPage OpenItemDetail(int itemNumber)
         {
             LnkItemTitles.GetElementFromCollection(itemNumber).Click();
 

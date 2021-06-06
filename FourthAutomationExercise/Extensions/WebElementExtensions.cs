@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Framework.Extensions
 {
-    public static class WebDriverExtensions
+    public static class WebElementExtensions
     {
         /// <summary>
         /// Get element from collection with text
@@ -31,6 +31,5 @@ namespace Framework.Extensions
 
             return element;
         }
-
     }
 }

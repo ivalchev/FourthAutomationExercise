@@ -11,9 +11,9 @@ namespace AutomationTests.Pages
         }
 
         private IWebElement TxtProductTitle => Driver.FindElementById("productTitle");
-        private IWebElement LnkProductBadge => Driver.FindElementByClassName("badge - link");
-        private IWebElement TxtProductPrice => Driver.FindElementByClassName("a-size-base a-color-price a-color-price");
-        private IWebElement TxtProductType => Driver.FindElementByClassName("slot - title");
+        private IWebElement LnkProductBadge => Driver.FindElementByClassName("badge-link");
+        private IWebElement TxtProductPrice => Driver.FindElementByXPath("//span[@class ='a-size-base a-color-price a-color-price']");
+        private IWebElement TxtProductType => Driver.FindElementById("productSubtitle");
 
         public string ProductTitle => TxtProductTitle.Text;
 

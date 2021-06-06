@@ -40,11 +40,13 @@ namespace AutomationTests.Pages
             TxtSearchField.SendKeys(text);
         }
 
-        public void SearchItem(string searchText)
+        public ResultsPage SearchItem(string searchText)
         {
             AddTextInSearchField(searchText);
 
             ClickSearchButton();
+
+            return new ResultsPage(Driver);
         }
 
         public CartPage OpenBasket()

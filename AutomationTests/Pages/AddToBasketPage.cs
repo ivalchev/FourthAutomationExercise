@@ -10,7 +10,7 @@ namespace AutomationTests.Pages
         {
         }
 
-        private IWebElement AddToBasketNotification => Driver.FindElementById("huc-v2-order-row-inner");
+        private IWebElement AdddedToBasketNotification => Driver.FindElementById("huc-v2-order-row-inner");
         private IWebElement TxtNotificationTitle => Driver.FindElementByClassName("a-size-medium a-text-bold");
         private IWebElement TxtBasketNumberItems => Driver.FindElementByClassName("a-size-medium a-align-center huc-subtotal");
         private IWebElement BtnEditBasket => Driver.FindElementById("hlb-view-cart-announce");
@@ -18,6 +18,8 @@ namespace AutomationTests.Pages
         public string NotificationTitle => TxtNotificationTitle.Text;
 
         public string BasketNumberItems => TxtBasketNumberItems.Text;
+
+        public bool CheckNotificationIsDisplayed => AdddedToBasketNotification.Displayed;
 
         public CartPage EditBasket()
         {

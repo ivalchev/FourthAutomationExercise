@@ -9,14 +9,20 @@ namespace AutomationTests.Steps
     [Binding]
     public class SearchAndReviewProductsSteps
     {
-        private string currentSection;
-        private MainPage mainPage;
-        private ResultsPage resultsPage;
+        private string currentSection = null;
+        private MainPage mainPage = new MainPage(DriverHooks.Driver);
+        private ResultsPage resultsPage = new ResultsPage(DriverHooks.Driver);
+
+        [Given(@"I successfully search item with '(.*)' from section '(.*)'")]
+        public void GivenISuccessfullySearchItemWithFromSection(string text, string section)
+        {
+            GivenIChooseFromTheSectionsDropDown(section);
+            mainPage.SearchItem(text);
+        }
 
         [Given(@"I choose '(.*)' from the Sections drop down")]
         public void GivenIChooseFromTheSectionsDropDown(string section)
         {
-            mainPage = new MainPage(DriverHooks.Driver);
             mainPage.ChooseSection(section);
 
             currentSection = section;
@@ -28,17 +34,10 @@ namespace AutomationTests.Steps
             mainPage.AddTextInSearchField(text);
         }
 
-
-        [When(@"Click on search button")]
-        public void WhenClickOnSearchButton()
+        [When(@"I click on search button")]
+        public void WhenIClickOnSearchButton()
         {
-            resultsPage = new ResultsPage(DriverHooks.Driver);
             resultsPage.ClickSearchButton();
-        }
-
-        [Then(@"The first item has title ""(.*)""")]
-        public void ThenTheFirstItemHasTitle(string title)
-        {
         }
 
         [Then(@"The (.*) has badge")]
@@ -47,16 +46,16 @@ namespace AutomationTests.Steps
             resultsPage.HasItemBadge(itemIndex);
         }
 
-        [Then(@"The (.*) has price")]
-        public void ThenTheHasPrice(int itemIndex)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"The item with (.*) has title '(.*)'")]
-        public void ThenTheItemHasTitle(int itemIndex, string title)
+        [Then(@"the item with (.*) has title '(.*)'")]
+        public void ThenTheItemWithHasTitle(int itemIndex, string title)
         {
             resultsPage.ItemTitleValue(itemIndex).Should().StartWith(title);
+        }
+
+        [Then(@"The (.*) has price (.*)")]
+        public void ThenTheHasPrice(int itemIndex, string price)
+        {
+            resultsPage.GetPriceValue(itemIndex).Should().Be(price);
         }
     }
 }

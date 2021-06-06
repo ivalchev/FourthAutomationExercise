@@ -20,23 +20,23 @@ namespace AutomationTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Search and review products")]
-    public partial class SearchAndReviewProductsFeature
+    [NUnit.Framework.DescriptionAttribute("ItemDetails")]
+    public partial class ItemDetailsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "SearchProduct.feature"
+#line 1 "ItemDetails.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Search and review products", "\tIn order to acces main page\r\n\tAs an active unregistered user\r\n\tI want to search " +
-                    "and review products", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ItemDetails", "\tIn order to acces item detail\r\n\tAs an active user\r\n\tI want to open successfully " +
+                    "the product page", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -84,26 +84,27 @@ testRunner.Given("I successfully open Main Page", ((string)(null)), ((TechTalk.S
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search item in specific section")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("Books", "Harry Potter and the Cursed Child", "Harry Potter and the Cursed Child - Parts One & Two", "0", "£4.00", null)]
-        [NUnit.Framework.TestCaseAttribute("Books", "Harry Potter and the Cursed Child", "Harry Potter and the Cursed Child - Parts One and Two", "0", "£4.00", null)]
-        public virtual void SearchItemInSpecificSection(string section, string searchCriterias, string title, string index, string price, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Open the first product details after search")]
+        [NUnit.Framework.CategoryAttribute("Sanity")]
+        [NUnit.Framework.TestCaseAttribute("Harry Potter and the Cursed Child", "Books", "Harry Potter and the Cursed Child - Parts One & Two", "£4.00", "Paperback", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("Harry Potter and the Cursed Child", "Books", "Harry Potter and the Cursed Child - Parts One and Two", "£4.00", "Paperback", "0", null)]
+        public virtual void OpenTheFirstProductDetailsAfterSearch(string text, string section, string title, string price, string type, string number, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "Sanity"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("text", text);
             argumentsOfScenario.Add("section", section);
-            argumentsOfScenario.Add("search criterias", searchCriterias);
             argumentsOfScenario.Add("title", title);
-            argumentsOfScenario.Add("index", index);
             argumentsOfScenario.Add("price", price);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search item in specific section", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("type", type);
+            argumentsOfScenario.Add("number", number);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open the first product details after search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -128,22 +129,22 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 11
- testRunner.Given(string.Format("I choose \'{0}\' from the Sections drop down", section), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I successfully search item with \'{0}\' from section \'{1}\'", text, section), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.And(string.Format("I insert \'{0}\' in search text box", searchCriterias), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When(string.Format("I click on the {0} product title", number), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
- testRunner.When("I click on search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then(string.Format("product title should be \'{0}\'", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
- testRunner.Then(string.Format("the item with {0} has title \'{1}\'", index, title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("product has a badge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And(string.Format("The {0} has badge", index), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("product price should be \'{0}\'", price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And(string.Format("The {0} has price {1}", index, price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("product type shoudl be \'{0}\'", type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

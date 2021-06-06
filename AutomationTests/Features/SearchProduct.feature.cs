@@ -86,8 +86,9 @@ testRunner.Given("I successfully open Main Page", ((string)(null)), ((TechTalk.S
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Search first item in specific section")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("Books", "\"Harry Potter and the Cursed Child\"", "\"Harry Potter and the Cursed Child - Parts One & Two\"", null)]
-        public virtual void SearchFirstItemInSpecificSection(string section, string searchCriterias, string title, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Books", "Harry Potter and the Cursed Child", "Harry Potter and the Cursed Child - Parts One & Two", "0", null)]
+        [NUnit.Framework.TestCaseAttribute("Books", "Harry Potter and the Cursed Child", "Harry Potter and the Cursed Child - Parts One and Two", "0", null)]
+        public virtual void SearchFirstItemInSpecificSection(string section, string searchCriterias, string title, string index, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag"};
@@ -100,6 +101,7 @@ testRunner.Given("I successfully open Main Page", ((string)(null)), ((TechTalk.S
             argumentsOfScenario.Add("section", section);
             argumentsOfScenario.Add("search criterias", searchCriterias);
             argumentsOfScenario.Add("title", title);
+            argumentsOfScenario.Add("index", index);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search first item in specific section", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
@@ -134,13 +136,13 @@ this.FeatureBackground();
  testRunner.When("Click on search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then(string.Format("The first item has title \'{0}\'", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("The item with {0} has title \'{1}\'", index, title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.And("The item has badge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("The {0} has badge", index), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("The item has price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("The {0} has price", index), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

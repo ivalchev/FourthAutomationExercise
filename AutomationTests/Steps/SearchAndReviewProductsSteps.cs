@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutomationTests.Hooks;
+using AutomationTests.Pages;
+using FluentAssertions;
+using System;
 using TechTalk.SpecFlow;
 
 namespace AutomationTests.Steps
@@ -6,41 +9,54 @@ namespace AutomationTests.Steps
     [Binding]
     public class SearchAndReviewProductsSteps
     {
-
-        [Given(@"I insert '(.*)' in search text box")]
-        public void GivenIInsertInSearchTextBox(string p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
+        private string currentSection;
+        private MainPage mainPage;
+        private ResultsPage resultsPage;
 
         [Given(@"I choose '(.*)' from the Sections drop down")]
-        public void GivenIChooseFromTheSectionsDropDown(string p0)
+        public void GivenIChooseFromTheSectionsDropDown(string section)
         {
-            ScenarioContext.Current.Pending();
+            mainPage = new MainPage(DriverHooks.Driver);
+            mainPage.ChooseSection(section);
+
+            currentSection = section;
         }
+
+        [Given(@"I insert '(.*)' in search text box")]
+        public void GivenIInsertInSearchTextBox(string text)
+        {
+            mainPage.AddTextInSearchField(text);
+        }
+
 
         [When(@"Click on search button")]
         public void WhenClickOnSearchButton()
         {
-            ScenarioContext.Current.Pending();
+            resultsPage = new ResultsPage(DriverHooks.Driver);
+            resultsPage.ClickSearchButton();
         }
 
         [Then(@"The first item has title ""(.*)""")]
-        public void ThenTheFirstItemHasTitle(string p0)
+        public void ThenTheFirstItemHasTitle(string title)
+        {
+        }
+
+        [Then(@"The (.*) has badge")]
+        public void ThenTheHasBadge(int itemIndex)
+        {
+            resultsPage.HasItemBadge(itemIndex);
+        }
+
+        [Then(@"The (.*) has price")]
+        public void ThenTheHasPrice(int itemIndex)
         {
             ScenarioContext.Current.Pending();
         }
 
-        [Then(@"The item has badge")]
-        public void ThenTheItemHasBadge()
+        [Then(@"The item with (.*) has title '(.*)'")]
+        public void ThenTheItemHasTitle(int itemIndex, string title)
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"The item has price")]
-        public void ThenTheItemHasPrice()
-        {
-            ScenarioContext.Current.Pending();
+            resultsPage.ItemTitleValue(itemIndex).Should().StartWith(title);
         }
     }
 }

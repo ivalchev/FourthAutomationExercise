@@ -16,7 +16,7 @@ namespace AutomationTests.Pages
         private IWebElement TxtSearchField => Driver.FindElementById("twotabsearchtextbox");
         private IWebElement BtnSearchSubmit => Driver.FindElementById("nav-search-submit-button");
         private IWebElement LnkBasket => Driver.FindElementById("nav-cart");
-        private IEnumerable<IWebElement> DropDownSections => Driver.FindElementsById("searchDropdownBox");
+        private IEnumerable<IWebElement> DropDownSections => Driver.FindElementsByXPath("//select[@id = 'searchDropdownBox']//option");
 
         public string PageTitle => Driver.Title;
 
@@ -34,10 +34,15 @@ namespace AutomationTests.Pages
             DropDownSections.GetElementFromCollection(section).Click();
         }
 
-        public void SearchItem(string searchText)
+        public void AddTextInSearchField(string text)
         {
             TxtSearchField.Clear();
-            TxtSearchField.SendKeys(searchText);
+            TxtSearchField.SendKeys(text);
+        }
+
+        public void SearchItem(string searchText)
+        {
+            AddTextInSearchField(searchText);
 
             ClickSearchButton();
         }
@@ -45,6 +50,8 @@ namespace AutomationTests.Pages
         public CartPage OpenBasket()
         {
             LnkBasket.Click();
+
+            return new CartPage(Driver);
         }
     }
 }

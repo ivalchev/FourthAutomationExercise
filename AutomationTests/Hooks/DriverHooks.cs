@@ -9,6 +9,10 @@ namespace AutomationTests.Hooks
     [Binding]
     public sealed class DriverHooks
     {
+        /// <summary>
+        /// RemoteWebDriver is a concrete class that implements interface WebDriver. 
+        /// RemoteWebDriver class contains additional methods that are not declared by interface WebDriver
+        /// </summary>
         public static RemoteWebDriver Driver { get; set; }
 
         [BeforeScenario]
@@ -16,7 +20,6 @@ namespace AutomationTests.Hooks
         {
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
-
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 

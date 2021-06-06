@@ -11,9 +11,10 @@ Scenario Outline: Search first item in specific section
 	Given I choose '<section>' from the Sections drop down 
 	And I insert '<search criterias>' in search text box
 	When Click on search button
-	Then The first item has title '<title>'
-	And The item has badge
-	And The item has price
+	Then The item with <index> has title '<title>'
+	And The <index> has badge
+	And The <index> has price
 Examples: 
-	| section  | search criterias                      | title                                                 |
-	| Books    | "Harry Potter and the Cursed Child"   | "Harry Potter and the Cursed Child - Parts One & Two" |
+	| section | search criterias                  | title                                               | index |
+	| Books   | Harry Potter and the Cursed Child | Harry Potter and the Cursed Child - Parts One & Two | 0     |
+	| Books   | Harry Potter and the Cursed Child | Harry Potter and the Cursed Child - Parts One and Two | 0     |

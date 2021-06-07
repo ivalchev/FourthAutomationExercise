@@ -1,5 +1,6 @@
 ﻿using AutomationTests.Pages.Basket;
 using Framework;
+using Framework.Configuration;
 using Framework.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -27,7 +28,7 @@ namespace AutomationTests.Pages
 
         public void OpenMainPage()
         {
-            GoTo("https://www.amazon.co.uk/");
+            GoTo(Urls.MainPageUrl);
             AcceptCookies();
         }
 

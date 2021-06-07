@@ -12,7 +12,6 @@ namespace AutomationTests.Steps
         private readonly ItemPage itemPage = new ItemPage(DriverHooks.Driver);
         private readonly AddToBasketPage addToBasket = new AddToBasketPage(DriverHooks.Driver);
         private readonly BasketPage basketPage = new BasketPage(DriverHooks.Driver);
-        private readonly ResultsPage resultsPage = new ResultsPage(DriverHooks.Driver);
         private readonly ScenarioContext scenarioContext;
 
         public OpenAndEditBasketSteps(ScenarioContext scenarioContext)

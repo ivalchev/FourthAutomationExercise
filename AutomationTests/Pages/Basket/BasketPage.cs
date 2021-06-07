@@ -14,7 +14,7 @@ namespace AutomationTests.Pages.Basket
         {
         }
 
-        private IWebElement TxtProductTitle => Driver.FindElementByXPath("//span[@class = 'a-size-medium a-color-base sc-product-title']");
+        private IWebElement TxtProductTitle => Driver.FindElementByCssSelector("span[class = 'a-size-medium sc-product-title']");
         private IWebElement TxtProductType => Driver.FindElementByCssSelector("span[class = 'a-size-small sc-product-binding a-text-bold']");
         private IWebElement TxtProductPrice => Driver.FindElementByCssSelector("span[class = 'a-size-medium a-color-base sc-price sc-white-space-nowrap sc-product-price a-text-bold']");
         private IWebElement DropDownBasketQuantiy => Driver.FindElementByClassName("a-dropdown-prompt");

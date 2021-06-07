@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Framework.Extensions
 {
@@ -31,5 +32,33 @@ namespace Framework.Extensions
 
             return element;
         }
+
+        public static void ClickWithRetry(this IWebElement element)
+        {
+            int attempts = 0;
+            while (attempts < 3)
+            {
+                try
+                {
+                    element.Click();
+                    break;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    Thread.Sleep(attempts * 300);
+                }
+                catch (ElementClickInterceptedException)
+                {
+                    Thread.Sleep((attempts + 1) * 300);
+                }
+                catch (ElementNotInteractableException)
+                {
+                    Thread.Sleep((attempts + 1) * 300);
+                }
+                attempts++;
+            }
+        }
+
+
     }
 }

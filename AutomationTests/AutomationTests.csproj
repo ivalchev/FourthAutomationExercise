@@ -21,17 +21,4 @@
     <ProjectReference Include="..\FourthAutomationExercise\Framework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Features\OpenMainPage.feature.cs">
-      <DesignTime>True</DesignTime>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\OpenMainPage.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>OpenMainPage.feature.cs</LastGenOutput>
-    </SpecFlowFeatureFiles>
-  </ItemGroup>
-
 </Project>

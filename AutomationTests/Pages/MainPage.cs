@@ -1,4 +1,5 @@
-﻿using Framework;
+﻿using AutomationTests.Pages.Basket;
+using Framework;
 using Framework.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -27,6 +28,7 @@ namespace AutomationTests.Pages
         public void OpenMainPage()
         {
             GoTo("https://www.amazon.co.uk/");
+            AcceptCookies();
         }
 
         public void ChooseSection(string section)
@@ -49,11 +51,11 @@ namespace AutomationTests.Pages
             return new ResultsPage(Driver);
         }
 
-        public CartPage OpenBasket()
+        public BasketPage OpenBasket()
         {
             LnkBasket.Click();
 
-            return new CartPage(Driver);
+            return new BasketPage(Driver);
         }
     }
 }

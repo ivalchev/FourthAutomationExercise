@@ -1,13 +1,13 @@
-﻿Feature: Search and review products 
-	In order to acces main page
-	As an active unregistered user
-	I want to search and review products
+﻿Feature: Open and Search on MainPage
+	In order to access main page
+	As an active user
+	I want to open successfully the webpage and search products
 
-Background: I navigate to Main Page
-Given I successfully open Main Page
+Background: 
+	Given I successfully open Main Page
 
-@mytag
-Scenario Outline: Search item in specific section
+@Sanity Test
+Scenario Outline: Search item from specific section
 	Given I choose '<section>' from the Sections drop down 
 	And I insert '<search criterias>' in search text box
 	When I click on search button

@@ -7,7 +7,7 @@ Background:
 Given I successfully open Main Page
 
 @Sanity
-Scenario Outline: Open the first product details after search
+Scenario Outline: Open the first product after search
 	Given I successfully search item with '<text>' from section '<section>'
 	When I click on the <number> product title 
 	Then product title should be '<title>'

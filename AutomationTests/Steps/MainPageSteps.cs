@@ -1,17 +1,22 @@
 ﻿using AutomationTests.Hooks;
 using AutomationTests.Pages;
 using FluentAssertions;
-using System;
 using TechTalk.SpecFlow;
 
 namespace AutomationTests.Steps
 {
     [Binding]
-    public class SearchAndReviewProductsSteps
+    public class MainPageSteps
     {
-        private string currentSection = null;
-        private MainPage mainPage = new MainPage(DriverHooks.Driver);
-        private ResultsPage resultsPage = new ResultsPage(DriverHooks.Driver);
+        private readonly MainPage mainPage = new MainPage(DriverHooks.Driver);
+        private readonly ResultsPage resultsPage = new ResultsPage(DriverHooks.Driver);
+
+        [Given(@"I successfully open Main Page")]
+        public void GivenISuccessfullyOpenMainPage()
+        {
+            WhenINavigateToTheMainPage();
+            ThenTheMainPageIsSuccessfullyOpenedAndLoaded();
+        }
 
         [Given(@"I successfully search item with '(.*)' from section '(.*)'")]
         public void GivenISuccessfullySearchItemWithFromSection(string text, string section)
@@ -24,14 +29,26 @@ namespace AutomationTests.Steps
         public void GivenIChooseFromTheSectionsDropDown(string section)
         {
             mainPage.ChooseSection(section);
-
-            currentSection = section;
         }
 
         [Given(@"I insert '(.*)' in search text box")]
         public void GivenIInsertInSearchTextBox(string text)
         {
             mainPage.AddTextInSearchField(text);
+        }
+
+        [Given(@"I opened first item after search")]
+        public void GivenIOpenedFirstItemAfterSearch()
+        {
+            GivenISuccessfullySearchItemWithFromSection("Harry Potter and the Cursed Child - Parts One & Two", "Books");
+
+            resultsPage.OpenItemDetail(0);
+        }
+
+        [When(@"I navigate to the Main page")]
+        public void WhenINavigateToTheMainPage()
+        {
+            mainPage.OpenMainPage();
         }
 
         [When(@"I click on search button")]
@@ -56,6 +73,17 @@ namespace AutomationTests.Steps
         public void ThenTheHasPrice(int itemIndex, string price)
         {
             resultsPage.GetPriceValue(itemIndex).Should().Be(price);
+        }
+
+        [Then(@"The Main page is successfully opened and loaded")]
+        public void ThenTheMainPageIsSuccessfullyOpenedAndLoaded()
+        {
+            mainPage.PageTitle.Should().NotBeNull().And.Be("Amazon.co.uk: Low Prices in Electronics, Books, Sports Equipment & more");
+        }
+
+        public void SearchItemFromSection()
+        {
+            GivenISuccessfullySearchItemWithFromSection("Harry Potter and the Cursed Child - Parts One & Two", "Books");
         }
     }
 }

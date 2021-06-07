@@ -8,8 +8,8 @@ namespace AutomationTests.Steps
     [Binding]
     public class ItemDetailsSteps
     {
-        private ResultsPage resultPage = new ResultsPage(DriverHooks.Driver);
-        private ItemPage itemDetails = new ItemPage(DriverHooks.Driver);
+        private readonly ResultsPage resultPage = new ResultsPage(DriverHooks.Driver);
+        private readonly ItemPage itemDetails = new ItemPage(DriverHooks.Driver);
 
         [When(@"I click on the (.*) product title")]
         public void WhenIClickOnTheProductTitle(int number)

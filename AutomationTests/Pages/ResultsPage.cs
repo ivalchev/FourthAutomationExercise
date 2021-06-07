@@ -20,16 +20,18 @@ namespace AutomationTests.Pages
         //Items Elements
         private IEnumerable<IWebElement> LnkItemTitles => Driver.FindElementsByXPath("//span[@class ='a-size-medium a-color-base a-text-normal']");
         private IEnumerable<IWebElement> ResultItems => Driver.FindElementsByXPath("//span[starts-with(@cel_widget_id, 'MAIN-SEARCH_RESULTS')]");
-        private IEnumerable<IWebElement> FirstElementPrices => Driver.FindElementsByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//span[@class = 'a-price']//span[@class = 'a-offscreen']");
-
+        private IEnumerable<IWebElement> FirstProductPrices => Driver.FindElementsByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//span[@class = 'a-price']//span[@class = 'a-offscreen']");
+        private IWebElement FirstProductPrintOfType => Driver.FindElementByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-0']//div[@class = 'a-section a-spacing-none a-spacing-top-small']//a[@class = 'a-size-base a-link-normal a-text-bold']");
 
         public string SubNavigationMenuValue => LnkSubNavigationMenu.Text;
 
         public string DepartmentValue => TxtDepartment.Text;
 
+        public string TypeOfPrint => FirstProductPrintOfType.Text;
+
         public string GetPriceValue(int itemNumber)
         {
-            return FirstElementPrices.GetElementFromCollection(itemNumber).Text;
+            return FirstProductPrices.GetElementFromCollection(itemNumber).GetAttribute("textContent");
         }
 
         public string ItemTitleValue(int itemNumber)

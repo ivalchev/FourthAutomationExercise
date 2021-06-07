@@ -84,11 +84,11 @@ testRunner.Given("I successfully open Main Page", ((string)(null)), ((TechTalk.S
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Open the first product details after search")]
+        [NUnit.Framework.DescriptionAttribute("Open the first product after search")]
         [NUnit.Framework.CategoryAttribute("Sanity")]
         [NUnit.Framework.TestCaseAttribute("Harry Potter and the Cursed Child", "Books", "Harry Potter and the Cursed Child - Parts One & Two", "£4.00", "Paperback", "0", null)]
         [NUnit.Framework.TestCaseAttribute("Harry Potter and the Cursed Child", "Books", "Harry Potter and the Cursed Child - Parts One and Two", "£4.00", "Paperback", "0", null)]
-        public virtual void OpenTheFirstProductDetailsAfterSearch(string text, string section, string title, string price, string type, string number, string[] exampleTags)
+        public virtual void OpenTheFirstProductAfterSearch(string text, string section, string title, string price, string type, string number, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Sanity"};
@@ -104,7 +104,7 @@ testRunner.Given("I successfully open Main Page", ((string)(null)), ((TechTalk.S
             argumentsOfScenario.Add("price", price);
             argumentsOfScenario.Add("type", type);
             argumentsOfScenario.Add("number", number);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open the first product details after search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open the first product after search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -2,7 +2,6 @@
 using AutomationTests.Pages;
 using AutomationTests.Pages.Basket;
 using FluentAssertions;
-using System;
 using TechTalk.SpecFlow;
 
 namespace AutomationTests.Steps
@@ -13,17 +12,12 @@ namespace AutomationTests.Steps
         private readonly ItemPage itemPage = new ItemPage(DriverHooks.Driver);
         private readonly AddToBasketPage addToBasket = new AddToBasketPage(DriverHooks.Driver);
         private readonly BasketPage basketPage = new BasketPage(DriverHooks.Driver);
-        private readonly MainPageSteps mainPageSteps = new MainPageSteps();
         private readonly ResultsPage resultsPage = new ResultsPage(DriverHooks.Driver);
-        private string title;
-        private string _typeOfPrint;
-        private string _productPrice;
+        private readonly ScenarioContext scenarioContext;
 
-        [Given(@"I successfully added item to basket")]
-        public void GivenISuccessfullyAddedItemToBasket()
+        public OpenAndEditBasketSteps(ScenarioContext scenarioContext)
         {
-            mainPageSteps.GivenIOpenedFirstItemAfterSearch();
-            WhenClickOnButtonAddToBasket();
+            this.scenarioContext = scenarioContext;
         }
 
         [When(@"click on button Add to Basket")]
@@ -37,7 +31,6 @@ namespace AutomationTests.Steps
         {
             addToBasket.EditBasket();
         }
-
 
         [Then(@"notification is displayed")]
         public void ThenNotificationIsDisplayed()
@@ -66,31 +59,19 @@ namespace AutomationTests.Steps
         [Then(@"the title shoud be the same like the title from search page")]
         public void ThenTheTitleShoudBeTheSameLikeTheTitleFromSearchPage()
         {
-            mainPageSteps.SearchItemFromSection();
-
-            title = resultsPage.ItemTitleValue(0);
-
-            basketPage.ProductTitle.Should().Be(title);
+            basketPage.ProductTitle.Should().Be((string)scenarioContext["Title"]);
         }
         
         [Then(@"the type of print shoud be the same like the type of print from search page")]
         public void ThenTheTypeOfPrintShoudBeTheSameLikeTheTypeOfPrintFromSearchPage()
         {
-            mainPageSteps.SearchItemFromSection();
-
-            string typeOfPrint = resultsPage.TypeOfPrint;
-
-            basketPage.ProductType.Should().Be(typeOfPrint);
+            basketPage.ProductType.Should().Be((string)scenarioContext["TypeOfPrint"]);
         }
         
         [Then(@"the price shoud be the same like the price from search page")]
         public void ThenThePriceShoudBeTheSameLikeThePriceFromSearchPage()
         {
-            mainPageSteps.SearchItemFromSection();
-
-            string productPrice = resultsPage.GetPriceValue(0);
-
-            basketPage.ProductPrice.Should().Be(productPrice);
+            basketPage.ProductPrice.Should().Be((string)scenarioContext["ProductPrice"]);
         }
         
         [Then(@"quantity should be (.*)")]
@@ -106,10 +87,7 @@ namespace AutomationTests.Steps
         {
             basketPage.CheckBothTotalPricesAreEqual().Should().BeTrue();
 
-            mainPageSteps.SearchItemFromSection();
-            string productPrice = resultsPage.GetPriceValue(0);
-
-            basketPage.GetTotalPriceValue().Should().Be(productPrice);
+            basketPage.GetTotalPriceValue().Should().Be((string)scenarioContext["ProductPrice"]);
         }
     }
 }

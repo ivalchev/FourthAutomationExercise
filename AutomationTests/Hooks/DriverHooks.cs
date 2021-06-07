@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Configuration;
 using TechTalk.SpecFlow;
 
 namespace AutomationTests.Hooks

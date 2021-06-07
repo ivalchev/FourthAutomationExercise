@@ -12,8 +12,8 @@ Scenario Outline: Search item from specific section
 	And I insert '<search criterias>' in search text box
 	When I click on search button
 	Then the item with <index> has title '<title>'
-	And The <index> has badge
-	And The <index> has price <price>
+	And the product with <index> has badge
+	And the product with <index> has price <price>
 Examples: 
 	| section | search criterias                  | title                                                 | index | price |
 	| Books   | Harry Potter and the Cursed Child | Harry Potter and the Cursed Child - Parts One & Two   | 0     | £4.00 |

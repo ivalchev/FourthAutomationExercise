@@ -1,7 +1,5 @@
 ﻿using AutomationTests.Pages.Basket;
-using Framework.Extensions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 
 namespace AutomationTests.Pages

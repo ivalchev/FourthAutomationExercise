@@ -14,14 +14,14 @@ namespace AutomationTests.Pages.Basket
         {
         }
 
-        private IWebElement TxtProductTitle => Driver.FindElementByCssSelector("span[class = 'a-size-medium sc-product-title']");
-        private IWebElement TxtProductType => Driver.FindElementByClassName("a-size-small sc-product-binding a-text-bold");
-        private IWebElement TxtProductPrice => Driver.FindElementByClassName("a-size-medium a-color-base sc-price sc-white-space-nowrap sc-product-price a-text-bold");
+        private IWebElement TxtProductTitle => Driver.FindElementByXPath("//span[@class = 'a-size-medium a-color-base sc-product-title']");
+        private IWebElement TxtProductType => Driver.FindElementByCssSelector("span[class = 'a-size-small sc-product-binding a-text-bold']");
+        private IWebElement TxtProductPrice => Driver.FindElementByCssSelector("span[class = 'a-size-medium a-color-base sc-price sc-white-space-nowrap sc-product-price a-text-bold']");
         private IWebElement DropDownBasketQuantiy => Driver.FindElementByClassName("a-dropdown-prompt");
         private IWebElement ImgProductImage => Driver.FindElementByClassName("sc-product-image");
 
         //The collection contains both total price on the basket page
-        private IEnumerable<IWebElement> BasketTotalPrices => Driver.FindElementsByClassName("a-size-medium a-color-base sc-price sc-white-space-nowrap");
+        private IEnumerable<IWebElement> BasketTotalPrices => Driver.FindElementsByCssSelector("span[class = 'a-size-medium a-color-base sc-price sc-white-space-nowrap']");
 
         public string ProductTitle => TxtProductTitle.Text;
         public string ProductType => TxtProductType.Text;
@@ -29,6 +29,10 @@ namespace AutomationTests.Pages.Basket
         public string SelectedQuantityText => DropDownBasketQuantiy.Text;
         public bool IsDisplayedProductImage => ImgProductImage.Displayed;
 
+        /// <summary>
+        /// Check whether the both total prices on the screen are equal
+        /// </summary>
+        /// <returns></returns>
         public bool CheckBothTotalPricesAreEqual()
         {
             bool areEqual = true;
@@ -42,7 +46,7 @@ namespace AutomationTests.Pages.Basket
 
             if (pricesText.Count > 1)
             {
-                for (int i = 0; i < pricesText.Count; i++)
+                for (int i = 0; i < pricesText.Count-1; i++)
                 {
                     if (pricesText[i] == pricesText[i + 1])
                     {

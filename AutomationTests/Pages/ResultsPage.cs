@@ -20,8 +20,8 @@ namespace AutomationTests.Pages
         //Items Elements
         private IEnumerable<IWebElement> LnkItemTitles => Driver.FindElementsByXPath("//span[@class ='a-size-medium a-color-base a-text-normal']");
         private IEnumerable<IWebElement> ResultItems => Driver.FindElementsByXPath("//span[starts-with(@cel_widget_id, 'MAIN-SEARCH_RESULTS')]");
-        private IEnumerable<IWebElement> FirstProductPrices => Driver.FindElementsByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//span[@class = 'a-price']//span[@class = 'a-offscreen']");
-        private IWebElement FirstProductPrintOfType => Driver.FindElementByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-0']//div[@class = 'a-section a-spacing-none a-spacing-top-small']//a[@class = 'a-size-base a-link-normal a-text-bold']");
+        private IEnumerable<IWebElement> FirstProductPrices => Driver.FindElementsByXPath("//a[starts-with(@href, '/Harry-Potter-Cursed-Child-Playscript/dp/0751565369')]//span[@class = 'a-offscreen']");
+        private IWebElement FirstProductPrintOfType => Driver.FindElementByXPath("//span[@cel_widget_id = 'MAIN-SEARCH_RESULTS-1']//div[@class = 'a-section a-spacing-none a-spacing-top-small']//a[@class = 'a-size-base a-link-normal a-text-bold']");
 
         public string SubNavigationMenuValue => LnkSubNavigationMenu.Text;
 
